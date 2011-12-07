@@ -1,0 +1,26 @@
+<% html_title "Market" %>
+
+<% content_for :header_tags do %>
+	<%= stylesheet_link_tag 'market', :plugin => 'redmine_market' %>
+<% end %>
+
+<h2>Market</h2>
+<h3>Overview of WPC</h3>
+<h4>Featured Lists</h4>
+<% for top_list in @top_lists %>
+	<% if top_list.is_featured? then %>
+	<div class="top-list-container">
+		<h2><%= link_to "#{top_list.name}", { :controller => 'market', :action => 'show', :id => top_list.id } %></h2>
+		<%= render :partial => "top_list", :locals => {:list_items => top_list.list_items} %>
+	</div>
+	<% end %>
+<% end %>
+
+<% if has_other_lists?(@top_lists) then %>
+	<h4>Other Lists</h4>
+	<% for top_list in @top_lists %>
+		<% if !top_list.is_featured? then %>
+			<%= link_to "#{top_list.name}", { :controller => 'market', :action => 'show', :id => top_list.id } %><br />
+		<% end %>
+	<% end %>
+<% end %>

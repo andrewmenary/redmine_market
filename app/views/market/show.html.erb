@@ -1,0 +1,13 @@
+<% html_title "Market" %>
+
+<% content_for :header_tags do %>
+	<%= stylesheet_link_tag 'market', :plugin => 'redmine_market' %>
+<% end %>
+
+<h2>Market</h2>
+<h3>Overview of WPC</h3>
+
+<div class="top-list-container">
+	<h2><%= link_to "#{@top_list.name}", { :controller => 'market', :action => 'show', :id => @top_list.id } %></h2>
+	<%= render :partial => "top_list", :locals => {:list_items => @top_list.list_items} %>
+</div>

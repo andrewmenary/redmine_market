@@ -1,0 +1,31 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+one:
+  id: 1
+
+  field: MyString
+
+  field_source: MyString
+
+  operator: MyString
+
+  value: MyText
+
+  in_order_by: false
+
+  is_order_descending: false
+
+two:
+  id: 2
+
+  field: MyString
+
+  field_source: MyString
+
+  operator: MyString
+
+  value: MyText
+
+  in_order_by: false
+
+  is_order_descending: false
+

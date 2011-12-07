@@ -1,0 +1,48 @@
+<!-- Top List Partial Template -->
+<% list_size = list_items.length %>
+<% for i in 0...list_size %>
+<div class="top-list-element">
+	<div class=<%= i + 1 < list_size ? "top-list-not-last" : "top-list-last" %>>
+		<div class="top-number-container">
+			<div class="top-number">
+				<%= i + 1 %>
+			</div>
+		</div>
+		<div class="top-element-box">
+		<div class="top-title-container">
+			<div class="top-title">
+				<%= link_to "#{list_items.at(i).project.name}", { :controller => 'projects', :action => 'show', :id => list_items.at(i).project.id } %>
+			</div>
+		</div>
+		<div class="top-subtitle-container" >
+			<div class="top-subtitle">
+				<%= link_to "#{list_items.at(i).name}", { :controller => 'versions', :action => 'show', :id => list_items.at(i).id } %>
+			</div>
+		</div>
+		<div class="top-detail-container">
+			<div class="top-detail-important-container">
+				<%= show_detail_line(list_items.at(i).custom_value_by_name('Prioritization Cost - Est'), 'Est. Cost:') %><br />
+				<%= show_detail_line(list_items.at(i).custom_value_by_name('Prioritization Hrs - Est'), 'Est. Hours:') %><br />
+				<% if list_items.at(i).custom_value_by_name('Critical - Initiator Opinion').true? then %>
+					<%= show_detail_line(list_items.at(i).custom_value_by_name('Critical Deadline'), format_boolean_field(list_items.at(i), 'Critical - Initiator Opinion', 'Critical:')) %>
+				<% end %>
+			</div>
+			<div class="top-detail">
+				<%= show_detail_line(list_items.at(i).custom_value_by_name('Priority'), 'Priority:') %><br />
+				<%= show_detail_line(list_items.at(i).custom_value_by_name('Departmental Owner'), 'Department:') %><br />
+				<%= show_detail_line(list_items.at(i).custom_value_by_name('Status'), 'Status:') %><br />
+				<%= show_detail_line(list_items.at(i).custom_value_by_name('Work Type'), 'Work Type:') %><br />
+				<%= show_detail_line(list_items.at(i).custom_value_by_name('Prioritization Start'), 'Prioritized Date:') %><br />
+				Targets:&nbsp;
+				<%= format_boolean_field(list_items.at(i), 'Increase Revenue', 'Revenue') %> |&nbsp;
+				<%= format_boolean_field(list_items.at(i), 'Increase Efficiencies', 'Efficiency') %> |&nbsp;
+				<%= format_boolean_field(list_items.at(i), 'Increase Enrollment', 'Enrollment') %> |&nbsp;
+				<%= format_boolean_field(list_items.at(i), 'Student Experience', 'Student Experience') %> |&nbsp;
+				<%= format_boolean_field(list_items.at(i), 'Maintain University Process', 'Maintain Process') %> |&nbsp;
+				<%= format_boolean_field(list_items.at(i), 'Scholarship and Service', 'Scholarship/Service') %>
+			</div>
+		</div>
+		</div>
+	</div>
+</div>
+<% end %>
